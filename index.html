@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- add icon link -->
+    <link rel="icon" href="images/logo.gif" type="image/x-icon">
+
     <link rel="stylesheet" href="style/main.css" type="text/css">
 
     <!-- Bootstrap CSS -->
@@ -15,7 +18,7 @@
     <title>Config Generator</title>
     <script>
 
-        let data = []
+        let data = { "data": [] }
         let show = []
         function addData() {
             // Declarations
@@ -27,7 +30,6 @@
             // Validations
             if (document.getElementById("fCell").value === '' || document.getElementById("tCell").value === '') {
                 document.getElementById("errorBox").innerHTML = "From cell and To cell are mandatory"
-                console.log(true)
             }
             else if (color === '') {
                 document.getElementById("errorBox").innerHTML = "Color cant be null"
@@ -40,13 +42,36 @@
                     "border": document.getElementById("border").value,
                     "color": document.getElementById("color").value,
                 }
-                data[inputData.fcell] = inputData
+                data.data[inputData.fcell] = inputData
                 show.push(inputData)
                 document.getElementById("lastConfig").innerHTML = ""
-                console.log(data)
                 for (let i = 0; i <= show.length; i++) {
                     document.getElementById("lastConfig").innerHTML += ("<b>Cell from</b>:" + show[i].fcell + "&emsp;<b>Type</b>:" + show[i].type + "&emsp;<b>Border</b>:" + show[i].border + "&emsp;<b>Bg-Color</b>:" + show[i].color + "<br>")
                 }
+            }
+        }
+
+        function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+        // Start file download.
+        function downloadfile() {
+            filename = document.getElementById("filename").value
+            if (filename === '') {
+                alert('<span style="color: red">Please enter config file name!!</span>')
+            }
+            else {
+                download(filename + '.json', JSON.stringify(data))
             }
         }
     </script>
@@ -57,7 +82,16 @@
         <div class="bg-light text-center">
             <h1>Config Generator</h1>
             <div>
-                <button type="button" onclick="generate()" class="btn btn-success">Generate Config File</button>
+                <div class="row p-3">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-2 p-2">
+                        <input type="text" id="filename" class="form-control" placeholder="Enter Config file name">
+                    </div>
+                    <div class="col-sm-2 p-2">
+                        <button type="button" onclick="downloadfile()" class="btn btn-success">Generate Config
+                            File</button>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
