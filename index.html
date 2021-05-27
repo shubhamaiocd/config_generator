@@ -20,6 +20,20 @@
 
         let data = { "data": [] }
         let show = []
+        let s = {}
+
+
+
+        var tempData = {};
+        for (var index in data) {
+            if (data[index].Status == "Valid") {
+                tempData[index] = data;
+            }
+        }
+        data = tempData;
+
+
+
         function addData() {
             // Declarations
             let fCell = document.getElementById("fCell").value + ":" + document.getElementById("tCell").value
@@ -45,9 +59,9 @@
                 data.data[inputData.fcell] = inputData
                 show.push(inputData)
                 document.getElementById("lastConfig").innerHTML = ""
-                for (let i = 0; i <= show.length; i++) {
-                    document.getElementById("lastConfig").innerHTML += ("<b>Cell from</b>:" + show[i].fcell + "&emsp;<b>Type</b>:" + show[i].type + "&emsp;<b>Border</b>:" + show[i].border + "&emsp;<b>Bg-Color</b>:" + show[i].color + "<br>")
-                }
+                // for (let i = 0; i <= show.length; i++) {
+                //     document.getElementById("lastConfig").innerHTML += ("<b>Cell from</b>:" + show[i].fcell + "&emsp;<b>Type</b>:" + show[i].type + "&emsp;<b>Border</b>:" + show[i].border + "&emsp;<b>Bg-Color</b>:" + show[i].color + "<br>")
+                // }
             }
         }
 
@@ -71,7 +85,12 @@
                 alert('<span style="color: red">Please enter config file name!!</span>')
             }
             else {
-                download(filename + '.json', JSON.stringify(data))
+                console.log(data)
+                // console.log(data['data']['s:s'])
+                // console.log(JSON.stringify(data['data']['s:s']))
+                console.log(typeof (data['data']['s:s']))
+                console.log(typeof (data['data']))
+                // download(filename + '.json', JSON.stringify(data))
             }
         }
     </script>
