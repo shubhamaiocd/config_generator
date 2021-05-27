@@ -42,12 +42,13 @@
                     "type": document.getElementById("type").value,
                     "border": document.getElementById("border").value,
                     "color": document.getElementById("color").value,
+                    "drcell": document.getElementById("drfCell").value + ":" + document.getElementById("drtCell").value,
                 }
                 data[inputData.fcell] = inputData;
                 show.push(inputData)
                 document.getElementById("lastConfig").innerHTML = ""
                 for (let i = 0; i <= show.length; i++) {
-                    document.getElementById("lastConfig").innerHTML += ("<b>Cell from</b>:" + show[i].fcell + "&emsp;<b>Type</b>:" + show[i].type + "&emsp;<b>Border</b>:" + show[i].border + "&emsp;<b>Bg-Color</b>:" + show[i].color + "<br>")
+                    document.getElementById("lastConfig").innerHTML += ("<b>Cell from</b>: <u>" + show[i].fcell + "</u>&emsp;<b>Type</b>: <u>" + show[i].type + "</u>&emsp;<b>Border</b>: <u>" + show[i].border + "</u>&emsp;<b>Bg-Color</b>: <u>" + show[i].color + "</u>&emsp;<b>Data ref Cell</b>: <u>" + show[i].drcell + "</u><br>")
                 }
             }
         }
@@ -65,10 +66,10 @@
         }
 
         // Start file download.
-        function downloadfile() {
+        function downloadFile() {
             filename = document.getElementById("filename").value
             if (filename === '') {
-                alert('<span style="color: red">Please enter config file name!!</span>')
+                alert('Please enter config file name!!')
             }
             else {
                 download(filename + '.json', JSON.stringify(data))
@@ -88,7 +89,7 @@
                         <input type="text" id="filename" class="form-control" placeholder="Enter Config file name">
                     </div>
                     <div class="col-sm-2 p-2">
-                        <button type="button" onclick="downloadfile()" class="btn btn-success">Generate Config
+                        <button type="button" onclick="downloadFile()" class="btn btn-success">Generate Config
                             File</button>
                     </div>
                 </div>
@@ -106,15 +107,15 @@
                 <br>
                 <span id="errorBox" class="text-danger"></span>
                 <form class="row">
-                    <div class="col-sm-2 form-group">
+                    <div class="col-sm form-group">
                         <label>From Cell<span class="red">*</span></label>
                         <input type="text" id="fCell" class="form-control">
                     </div>
-                    <div class="col-sm-2 form-group">
+                    <div class="col-sm form-group">
                         <label>To Cell<span class="red">*</span></label>
                         <input type="text" id="tCell" class="form-control">
                     </div>
-                    <div class="col-sm-2 form-group">
+                    <div class="col-sm form-group">
                         <label>Type<span class="red">*</span></label>
                         <select class="form-control form-control" id="type">
                             <option>Header</option>
@@ -123,7 +124,7 @@
                             <option>Plain Data</option>
                         </select>
                     </div>
-                    <div class="col-sm-2 form-group">
+                    <div class="col-sm form-group">
                         <label>Border<span class="red">*</span></label>
                         <select class="form-control form-control" id="border">
                             <option>0</option>
@@ -134,11 +135,19 @@
                             <option>5</option>
                         </select>
                     </div>
-                    <div class="col-sm-2 form-group">
+                    <div class="col-sm form-group">
                         <label>Color<span class="red">*</span></label>
                         <input type="text" id="color" class="form-control">
                     </div>
-                    <div class="col-sm-2 form-group mt-4">
+                    <div class="col-sm form-group">
+                        <label>From Cell<span class="red">*</span></label>
+                        <input type="text" id="drfCell" class="form-control">
+                    </div>
+                    <div class="col-sm form-group">
+                        <label>To Cell<span class="red">*</span></label>
+                        <input type="text" id="drtCell" class="form-control">
+                    </div>
+                    <div class="col-sm form-group mt-4">
                         <button type="button" onclick="addData()" class="btn btn-primary">Add Config</button>
                     </div>
                 </form>
