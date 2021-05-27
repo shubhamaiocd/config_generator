@@ -21,7 +21,6 @@
         let data = {}
         let show = []
 
-
         function addData() {
             // Declarations
             let fCell = document.getElementById("fCell").value + ":" + document.getElementById("tCell").value
@@ -44,14 +43,12 @@
                     "border": document.getElementById("border").value,
                     "color": document.getElementById("color").value,
                 }
+                data[inputData.fcell] = inputData;
                 show.push(inputData)
                 document.getElementById("lastConfig").innerHTML = ""
                 for (let i = 0; i <= show.length; i++) {
                     document.getElementById("lastConfig").innerHTML += ("<b>Cell from</b>:" + show[i].fcell + "&emsp;<b>Type</b>:" + show[i].type + "&emsp;<b>Border</b>:" + show[i].border + "&emsp;<b>Bg-Color</b>:" + show[i].color + "<br>")
                 }
-                data[inputData.fcell] = inputData;
-                console.log(data)
-                console.log(typeof data)
             }
         }
 
@@ -62,7 +59,6 @@
 
             element.style.display = 'none';
             document.body.appendChild(element);
-
             element.click();
 
             document.body.removeChild(element);
