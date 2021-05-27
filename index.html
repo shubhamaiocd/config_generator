@@ -27,6 +27,7 @@
             let typeo = document.getElementById("type").value
             let border = document.getElementById("border").value
             let color = document.getElementById("color").value
+            let drCell = document.getElementById("drfCell").value + ":" + document.getElementById("drtCell").value
 
             // Validations
             if (document.getElementById("fCell").value === '' || document.getElementById("tCell").value === '') {
@@ -34,6 +35,9 @@
             }
             else if (color === '') {
                 document.getElementById("errorBox").innerHTML = "Color cant be null"
+            }
+            else if (document.getElementById("drfCell").value === '' || document.getElementById("drtCell").value === '') {
+                document.getElementById("errorBox").innerHTML = "Data From Cell and Data To Cell are mandatory"
             }
             else {
                 document.getElementById("errorBox").innerHTML = ''
@@ -101,7 +105,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-10 card bg-white text-dark p-2">
                 <div>
-                    <h3>Config</h3>
+                    <h5>Added Configurations</h5>
                     <span id="lastConfig"></span>
                 </div>
                 <br>
@@ -109,11 +113,11 @@
                 <form class="row">
                     <div class="col-sm form-group">
                         <label>From Cell<span class="red">*</span></label>
-                        <input type="text" id="fCell" class="form-control">
+                        <input placeholder="A1" type="text" id="fCell" class="form-control">
                     </div>
                     <div class="col-sm form-group">
                         <label>To Cell<span class="red">*</span></label>
-                        <input type="text" id="tCell" class="form-control">
+                        <input placeholder="B3" type="text" id="tCell" class="form-control">
                     </div>
                     <div class="col-sm form-group">
                         <label>Type<span class="red">*</span></label>
@@ -137,15 +141,15 @@
                     </div>
                     <div class="col-sm form-group">
                         <label>Color<span class="red">*</span></label>
-                        <input type="text" id="color" class="form-control">
+                        <input placeholder="red or #FFFFFF" type="text" id="color" class="form-control">
                     </div>
                     <div class="col-sm form-group">
-                        <label>From Cell<span class="red">*</span></label>
-                        <input type="text" id="drfCell" class="form-control">
+                        <label>Data From Cell<span class="red">*</span></label>
+                        <input placeholder="D7" type="text" id="drfCell" class="form-control">
                     </div>
                     <div class="col-sm form-group">
-                        <label>To Cell<span class="red">*</span></label>
-                        <input type="text" id="drtCell" class="form-control">
+                        <label>Data To Cell<span class="red">*</span></label>
+                        <input placeholder="J9" type="text" id="drtCell" class="form-control">
                     </div>
                     <div class="col-sm form-group mt-4">
                         <button type="button" onclick="addData()" class="btn btn-primary">Add Config</button>
